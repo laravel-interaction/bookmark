@@ -39,6 +39,7 @@ class TestCase extends BaseTestCase
             [
                 'database.default' => 'testing',
                 'bookmark.models.user' => User::class,
+                'bookmark.uuids' => true,
             ]
         );
     }

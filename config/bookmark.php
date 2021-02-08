@@ -6,7 +6,7 @@ use Zing\LaravelBookmark\Bookmark;
 
 return [
     'load_migrations' => true,
-    'uuids' => true,
+    'uuids' => false,
     'models' => [
         'user' => \App\User::class,
         'bookmark' => Bookmark::class,
