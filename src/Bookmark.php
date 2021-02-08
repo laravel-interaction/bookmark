@@ -43,9 +43,9 @@ class Bookmark extends MorphPivot
         return $this->uuids() ? 'string' : parent::getKeyType();
     }
 
-    protected static function booted(): void
+    protected static function boot(): void
     {
-        parent::booted();
+        parent::boot();
 
         static::creating(
             function (self $like): void {
