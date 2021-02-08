@@ -3,13 +3,13 @@
 User bookmark/unbookmark behaviour for Laravel.
 
 <p align="center">
-<a href="https://github.com/zingimmick/laravel-bookmark/actions"><img src="https://github.com/zingimmick/laravel-bookmark/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://codecov.io/gh/zingimmick/laravel-bookmark"><img src="https://codecov.io/gh/zingimmick/laravel-bookmark/branch/master/graph/badge.svg" alt="Code Coverage" /></a>
-<a href="https://packagist.org/packages/zing/laravel-bookmark"><img src="https://poser.pugx.org/zing/laravel-bookmark/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/zing/laravel-bookmark"><img src="https://poser.pugx.org/zing/laravel-bookmark/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/zing/laravel-bookmark"><img src="https://poser.pugx.org/zing/laravel-bookmark/v/unstable.svg" alt="Latest Unstable Version"></a>
-<a href="https://packagist.org/packages/zing/laravel-bookmark"><img src="https://poser.pugx.org/zing/laravel-bookmark/license" alt="License"></a>
-<a href="https://codeclimate.com/github/zingimmick/laravel-bookmark/maintainability"><img src="https://api.codeclimate.com/v1/badges/7b9401b8291d19a0ec95/maintainability" alt="Code Climate" /></a>
+<a href="https://github.com/laravel-interaction/bookmark/actions"><img src="https://github.com/laravel-interaction/bookmark/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://codecov.io/gh/laravel-interaction/bookmark"><img src="https://codecov.io/gh/laravel-interaction/bookmark/branch/master/graph/badge.svg" alt="Code Coverage" /></a>
+<a href="https://packagist.org/packages/laravel-interaction/bookmark"><img src="https://poser.pugx.org/laravel-interaction/bookmark/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel-interaction/bookmark"><img src="https://poser.pugx.org/laravel-interaction/bookmark/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel-interaction/bookmark"><img src="https://poser.pugx.org/laravel-interaction/bookmark/v/unstable.svg" alt="Latest Unstable Version"></a>
+<a href="https://packagist.org/packages/laravel-interaction/bookmark"><img src="https://poser.pugx.org/laravel-interaction/bookmark/license" alt="License"></a>
+<a href="https://codeclimate.com/github/laravel-interaction/bookmark/maintainability"><img src="https://api.codeclimate.com/v1/badges/7b9401b8291d19a0ec95/maintainability" alt="Code Climate" /></a>
 </p>
 
 > **Requires [PHP 7.2.0+](https://php.net/releases/)**
@@ -17,7 +17,7 @@ User bookmark/unbookmark behaviour for Laravel.
 Require Laravel Bookmark using [Composer](https://getcomposer.org):
 
 ```bash
-composer require zing/laravel-bookmark
+composer require laravel-interaction/bookmark
 ```
 
 ## Usage
