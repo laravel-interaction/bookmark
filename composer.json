@@ -27,18 +27,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Zing\\LaravelBookmark\\": "src"
+            "LaravelInteraction\\Bookmark\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Zing\\LaravelBookmark\\Tests\\": "tests"
+            "LaravelInteraction\\Bookmark\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Zing\\LaravelBookmark\\BookmarkServiceProvider"
+                "LaravelInteraction\\Bookmark\\BookmarkServiceProvider"
             ]
         }
     },

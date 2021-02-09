@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Concerns;
+namespace LaravelInteraction\Bookmark\Concerns;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection|\Zing\LaravelBookmark\Bookmark[] $bookmarkerBookmarks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\LaravelInteraction\Bookmark\Bookmark[] $bookmarkerBookmarks
  * @property-read int|null $bookmarkerBookmarks_count
  */
 trait Bookmarker

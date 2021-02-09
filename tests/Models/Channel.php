@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests\Models;
+namespace LaravelInteraction\Bookmark\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Zing\LaravelBookmark\Concerns\Bookmarkable;
+use LaravelInteraction\Bookmark\Concerns\Bookmarkable;
 
 /**
- * @method static \Zing\LaravelBookmark\Tests\Models\Channel|\Illuminate\Database\Eloquent\Builder query()
+ * @method static \LaravelInteraction\Bookmark\Tests\Models\Channel|\Illuminate\Database\Eloquent\Builder query()
  */
 class Channel extends Model
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Events;
+namespace LaravelInteraction\Bookmark\Events;
 
 use Illuminate\Database\Eloquent\Model;
 

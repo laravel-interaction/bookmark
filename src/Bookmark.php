@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark;
+namespace LaravelInteraction\Bookmark;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Str;
-use Zing\LaravelBookmark\Events\Bookmarked;
-use Zing\LaravelBookmark\Events\Unbookmarked;
+use LaravelInteraction\Bookmark\Events\Bookmarked;
+use LaravelInteraction\Bookmark\Events\Unbookmarked;
 
 /**
  * @property \Illuminate\Database\Eloquent\Model $user
  * @property \Illuminate\Database\Eloquent\Model $bookmarker
  * @property \Illuminate\Database\Eloquent\Model $bookmarkable
  *
- * @method static \Zing\LaravelBookmark\Bookmark|\Illuminate\Database\Eloquent\Builder withType(string $type)
- * @method static \Zing\LaravelBookmark\Bookmark|\Illuminate\Database\Eloquent\Builder query()
+ * @method static \LaravelInteraction\Bookmark\Bookmark|\Illuminate\Database\Eloquent\Builder withType(string $type)
+ * @method static \LaravelInteraction\Bookmark\Bookmark|\Illuminate\Database\Eloquent\Builder query()
  */
 class Bookmark extends MorphPivot
 {

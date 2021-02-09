@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests;
+namespace LaravelInteraction\Bookmark\Tests;
 
 use Illuminate\Support\Carbon;
-use Zing\LaravelBookmark\Bookmark;
-use Zing\LaravelBookmark\Tests\Models\Channel;
-use Zing\LaravelBookmark\Tests\Models\User;
+use LaravelInteraction\Bookmark\Bookmark;
+use LaravelInteraction\Bookmark\Tests\Models\Channel;
+use LaravelInteraction\Bookmark\Tests\Models\User;
 
 class BookmarkTest extends TestCase
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\Zing\LaravelBookmark\Tests\Models\User
+     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\LaravelInteraction\Bookmark\Tests\Models\User
      */
     protected $user;
 
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\Zing\LaravelBookmark\Tests\Models\Channel
+     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\LaravelInteraction\Bookmark\Tests\Models\Channel
      */
     protected $channel;
 
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|\Zing\LaravelBookmark\Bookmark|null
+     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|\LaravelInteraction\Bookmark\Bookmark|null
      */
     protected $bookmark;
 

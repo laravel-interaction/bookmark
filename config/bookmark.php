@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Zing\LaravelBookmark\Bookmark;
+use LaravelInteraction\Bookmark\Bookmark;
 
 return [
     'load_migrations' => true,

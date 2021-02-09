@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests\Models;
+namespace LaravelInteraction\Bookmark\Tests\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Zing\LaravelBookmark\Concerns\Bookmarkable;
-use Zing\LaravelBookmark\Concerns\Bookmarker;
+use LaravelInteraction\Bookmark\Concerns\Bookmarkable;
+use LaravelInteraction\Bookmark\Concerns\Bookmarker;
 
 /**
- * @method static \Zing\LaravelBookmark\Tests\Models\User|\Illuminate\Database\Eloquent\Builder query()
+ * @method static \LaravelInteraction\Bookmark\Tests\Models\User|\Illuminate\Database\Eloquent\Builder query()
  */
 class User extends Model
 {

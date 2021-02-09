@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark;
+namespace LaravelInteraction\Bookmark;
 
 use Illuminate\Support\ServiceProvider;
 

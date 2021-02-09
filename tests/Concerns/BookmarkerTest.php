@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests\Concerns;
+namespace LaravelInteraction\Bookmark\Tests\Concerns;
 
-use Zing\LaravelBookmark\Bookmark;
-use Zing\LaravelBookmark\Tests\Models\Channel;
-use Zing\LaravelBookmark\Tests\Models\User;
-use Zing\LaravelBookmark\Tests\TestCase;
+use LaravelInteraction\Bookmark\Bookmark;
+use LaravelInteraction\Bookmark\Tests\Models\Channel;
+use LaravelInteraction\Bookmark\Tests\Models\User;
+use LaravelInteraction\Bookmark\Tests\TestCase;
 
 class BookmarkerTest extends TestCase
 {

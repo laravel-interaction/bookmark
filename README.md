@@ -26,7 +26,7 @@ composer require laravel-interaction/bookmark
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Zing\LaravelBookmark\Concerns\Bookmarker;
+use LaravelInteraction\Bookmark\Concerns\Bookmarker;
 
 class User extends Model
 {
@@ -38,7 +38,7 @@ class User extends Model
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Zing\LaravelBookmark\Concerns\Bookmarkable;
+use LaravelInteraction\Bookmark\Concerns\Bookmarkable;
 
 class Channel extends Model
 {
@@ -49,9 +49,9 @@ class Channel extends Model
 ### Bookmarker
 
 ```php
-use Zing\LaravelBookmark\Tests\Models\Channel;
-/** @var \Zing\LaravelBookmark\Tests\Models\User $user */
-/** @var \Zing\LaravelBookmark\Tests\Models\Channel $channel */
+use LaravelInteraction\Bookmark\Tests\Models\Channel;
+/** @var \LaravelInteraction\Bookmark\Tests\Models\User $user */
+/** @var \LaravelInteraction\Bookmark\Tests\Models\Channel $channel */
 // Bookmark to Bookmarkable
 $user->bookmark($channel);
 $user->unbookmark($channel);
@@ -77,10 +77,10 @@ Channel::query()->whereNotBookmarkedBy($user)->get();
 ### Bookmarkable
 
 ```php
-use Zing\LaravelBookmark\Tests\Models\User;
-use Zing\LaravelBookmark\Tests\Models\Channel;
-/** @var \Zing\LaravelBookmark\Tests\Models\User $user */
-/** @var \Zing\LaravelBookmark\Tests\Models\Channel $channel */
+use LaravelInteraction\Bookmark\Tests\Models\User;
+use LaravelInteraction\Bookmark\Tests\Models\Channel;
+/** @var \LaravelInteraction\Bookmark\Tests\Models\User $user */
+/** @var \LaravelInteraction\Bookmark\Tests\Models\Channel $channel */
 // Compare Bookmarker
 $channel->isBookmarkedBy($user); 
 $channel->isNotBookmarkedBy($user);
@@ -102,8 +102,8 @@ $channels->each(function (Channel $channel){
 
 | Event | Fired |
 | --- | --- |
-| `Zing\LaravelBookmark\Events\Bookmarked` | When an object get bookmarked. |
-| `Zing\LaravelBookmark\Events\Unbookmarked` | When an object get unbookmarked. |
+| `LaravelInteraction\Bookmark\Events\Bookmarked` | When an object get bookmarked. |
+| `LaravelInteraction\Bookmark\Events\Unbookmarked` | When an object get unbookmarked. |
 
 ## License
 

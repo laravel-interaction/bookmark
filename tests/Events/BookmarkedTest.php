@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests\Events;
+namespace LaravelInteraction\Bookmark\Tests\Events;
 
 use Illuminate\Support\Facades\Event;
-use Zing\LaravelBookmark\Events\Bookmarked;
-use Zing\LaravelBookmark\Tests\Models\Channel;
-use Zing\LaravelBookmark\Tests\Models\User;
-use Zing\LaravelBookmark\Tests\TestCase;
+use LaravelInteraction\Bookmark\Events\Bookmarked;
+use LaravelInteraction\Bookmark\Tests\Models\Channel;
+use LaravelInteraction\Bookmark\Tests\Models\User;
+use LaravelInteraction\Bookmark\Tests\TestCase;
 
 class BookmarkedTest extends TestCase
 {

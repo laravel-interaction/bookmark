@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Tests;
+namespace LaravelInteraction\Bookmark\Tests;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use LaravelInteraction\Bookmark\BookmarkServiceProvider;
+use LaravelInteraction\Bookmark\Tests\Models\User;
 use Orchestra\Testbench\TestCase as BaseTestCase;
-use Zing\LaravelBookmark\BookmarkServiceProvider;
-use Zing\LaravelBookmark\Tests\Models\User;
 
 class TestCase extends BaseTestCase
 {

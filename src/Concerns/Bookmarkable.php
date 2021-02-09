@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Zing\LaravelBookmark\Concerns;
+namespace LaravelInteraction\Bookmark\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -11,8 +11,8 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use function is_a;
 
 /**
- * @property-read \Illuminate\Database\Eloquent\Collection|\Zing\LaravelBookmark\Bookmark[] $bookmarkableBookmarks
- * @property-read \Illuminate\Database\Eloquent\Collection|\Zing\LaravelBookmark\Concerns\Bookmarker[] $bookmarkers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\LaravelInteraction\Bookmark\Bookmark[] $bookmarkableBookmarks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\LaravelInteraction\Bookmark\Concerns\Bookmarker[] $bookmarkers
  * @property-read int|null $bookmarkers_count
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder whereBookmarkedBy(\Illuminate\Database\Eloquent\Model $user)
