@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use LaravelInteraction\Support\Interaction;
 use function is_a;
 
 /**
@@ -79,19 +80,7 @@ trait Bookmarkable
 
     public function bookmarkersCountForHumans($precision = 1, $mode = PHP_ROUND_HALF_UP, $divisors = null): string
     {
-        $number = $this->bookmarkersCount();
-        $divisors = collect($divisors ?? config('bookmark.divisors'));
-        $divisor = $divisors->keys()->filter(
-            function ($divisor) use ($number) {
-                return $divisor <= abs($number);
-            }
-        )->last(null, 1);
-
-        if ($divisor === 1) {
-            return (string) $number;
-        }
-
-        return number_format(round($number / $divisor, $precision, $mode), $precision) . $divisors->get($divisor);
+        return Interaction::numberForHumans($this->bookmarkersCount(), $precision, $mode, $divisors ?? config('bookmark.divisors'));
     }
 
     public function scopeWhereBookmarkedBy(Builder $query, Model $user): Builder
