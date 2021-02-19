@@ -28,8 +28,6 @@ trait Bookmarker
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $object
-     *
-     * @throws \Exception
      */
     public function unbookmark(Model $object): void
     {
@@ -42,8 +40,6 @@ trait Bookmarker
 
     /**
      * @param \Illuminate\Database\Eloquent\Model $object
-     *
-     * @throws \Exception
      */
     public function toggleBookmark(Model $object): void
     {
