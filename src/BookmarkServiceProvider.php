@@ -4,48 +4,10 @@ declare(strict_types=1);
 
 namespace LaravelInteraction\Bookmark;
 
-use Illuminate\Support\ServiceProvider;
+use LaravelInteraction\Support\InteractionList;
+use LaravelInteraction\Support\InteractionServiceProvider;
 
-class BookmarkServiceProvider extends ServiceProvider
+class BookmarkServiceProvider extends InteractionServiceProvider
 {
-    public function boot(): void
-    {
-        if ($this->app->runningInConsole()) {
-            $this->publishes(
-                [
-                    $this->getConfigPath() => config_path('bookmark.php'),
-                ],
-                'bookmark-config'
-            );
-            $this->publishes(
-                [
-                    $this->getMigrationsPath() => database_path('migrations'),
-                ],
-                'bookmark-migrations'
-            );
-            if ($this->shouldLoadMigrations()) {
-                $this->loadMigrationsFrom($this->getMigrationsPath());
-            }
-        }
-    }
-
-    public function register(): void
-    {
-        $this->mergeConfigFrom($this->getConfigPath(), 'bookmark');
-    }
-
-    protected function getConfigPath(): string
-    {
-        return __DIR__ . '/../config/bookmark.php';
-    }
-
-    protected function getMigrationsPath(): string
-    {
-        return __DIR__ . '/../migrations';
-    }
-
-    private function shouldLoadMigrations(): bool
-    {
-        return (bool) config('bookmark.load_migrations');
-    }
+    protected $interaction = InteractionList::BOOKMARK;
 }
