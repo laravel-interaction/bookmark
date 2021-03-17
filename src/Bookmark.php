@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace LaravelInteraction\Bookmark;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphPivot;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Str;
 use LaravelInteraction\Bookmark\Events\Bookmarked;
 use LaravelInteraction\Bookmark\Events\Unbookmarked;
-use LaravelInteraction\Support\InteractionList;
-use LaravelInteraction\Support\Models\Interaction;
 
 /**
  * @property \Illuminate\Database\Eloquent\Model $user
@@ -20,18 +21,50 @@ use LaravelInteraction\Support\Models\Interaction;
  * @method static \LaravelInteraction\Bookmark\Bookmark|\Illuminate\Database\Eloquent\Builder withType(string $type)
  * @method static \LaravelInteraction\Bookmark\Bookmark|\Illuminate\Database\Eloquent\Builder query()
  */
-class Bookmark extends Interaction
+class Bookmark extends MorphPivot
 {
-    protected $interaction = InteractionList::BOOKMARK;
+    protected function uuids(): bool
+    {
+        return (bool) config('bookmark.uuids');
+    }
 
-    protected $tableNameKey = 'bookmarks';
+    public function getIncrementing(): bool
+    {
+        return $this->uuids() ? true : parent::getIncrementing();
+    }
 
-    protected $morphTypeName = 'bookmarkable';
+    public function getKeyName(): string
+    {
+        return $this->uuids() ? 'uuid' : parent::getKeyName();
+    }
+
+    public function getKeyType(): string
+    {
+        return $this->uuids() ? 'string' : parent::getKeyType();
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(
+            function (self $like): void {
+                if ($like->uuids()) {
+                    $like->{$like->getKeyName()} = Str::orderedUuid();
+                }
+            }
+        );
+    }
 
     protected $dispatchesEvents = [
         'created' => Bookmarked::class,
         'deleted' => Unbookmarked::class,
     ];
+
+    public function getTable()
+    {
+        return config('bookmark.table_names.bookmarks') ?: parent::getTable();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
@@ -39,6 +72,14 @@ class Bookmark extends Interaction
     public function bookmarkable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(config('bookmark.models.user'), config('bookmark.column_names.user_foreign_key'));
     }
 
     /**
@@ -57,5 +98,16 @@ class Bookmark extends Interaction
     public function isBookmarkedTo(Model $object): bool
     {
         return $object->is($this->bookmarkable);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $type
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithType(Builder $query, string $type): Builder
+    {
+        return $query->where('bookmarkable_type', app($type)->getMorphClass());
     }
 }
