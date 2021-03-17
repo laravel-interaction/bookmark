@@ -14,37 +14,13 @@ use function is_a;
 /**
  * @property-read \Illuminate\Database\Eloquent\Collection|\LaravelInteraction\Bookmark\Bookmark[] $bookmarkableBookmarks
  * @property-read \Illuminate\Database\Eloquent\Collection|\LaravelInteraction\Bookmark\Concerns\Bookmarker[] $bookmarkers
- * @property-read int|null $bookmarkers_count
+ * @property-read string|int|null $bookmarkers_count
  *
  * @method static static|\Illuminate\Database\Eloquent\Builder whereBookmarkedBy(\Illuminate\Database\Eloquent\Model $user)
  * @method static static|\Illuminate\Database\Eloquent\Builder whereNotBookmarkedBy(\Illuminate\Database\Eloquent\Model $user)
  */
 trait Bookmarkable
 {
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $user
-     *
-     * @return bool
-     */
-    public function isBookmarkedBy(Model $user): bool
-    {
-        if (! is_a($user, config('bookmark.models.user'))) {
-            return false;
-        }
-
-        if ($this->relationLoaded('bookmarkers')) {
-            return $this->bookmarkers->contains($user);
-        }
-
-        return ($this->relationLoaded('bookmarkableBookmarks') ? $this->bookmarkableBookmarks : $this->bookmarkableBookmarks())
-            ->where(config('bookmark.column_names.user_foreign_key'), $user->getKey())->count() > 0;
-    }
-
-    public function isNotBookmarkedBy(Model $user): bool
-    {
-        return ! $this->isBookmarkedBy($user);
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -81,6 +57,30 @@ trait Bookmarkable
     public function bookmarkersCountForHumans($precision = 1, $mode = PHP_ROUND_HALF_UP, $divisors = null): string
     {
         return Interaction::numberForHumans($this->bookmarkersCount(), $precision, $mode, $divisors ?? config('bookmark.divisors'));
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $user
+     *
+     * @return bool
+     */
+    public function isBookmarkedBy(Model $user): bool
+    {
+        if (! is_a($user, config('bookmark.models.user'))) {
+            return false;
+        }
+
+        if ($this->relationLoaded('bookmarkers')) {
+            return $this->bookmarkers->contains($user);
+        }
+
+        return ($this->relationLoaded('bookmarkableBookmarks') ? $this->bookmarkableBookmarks : $this->bookmarkableBookmarks())
+            ->where(config('bookmark.column_names.user_foreign_key'), $user->getKey())->count() > 0;
+    }
+
+    public function isNotBookmarkedBy(Model $user): bool
+    {
+        return ! $this->isBookmarkedBy($user);
     }
 
     public function scopeWhereBookmarkedBy(Builder $query, Model $user): Builder
