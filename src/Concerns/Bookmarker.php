@@ -27,23 +27,11 @@ trait Bookmarker
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $object
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function unbookmark(Model $object): void
+    public function bookmarkerBookmarks(): HasMany
     {
-        if ($this->hasNotBookmarked($object)) {
-            return;
-        }
-
-        $this->bookmarks(get_class($object))->detach($object->getKey());
-    }
-
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $object
-     */
-    public function toggleBookmark(Model $object): void
-    {
-        $this->bookmarks(get_class($object))->toggle($object->getKey());
+        return $this->hasMany(config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'), $this->getKeyName());
     }
 
     /**
@@ -65,11 +53,23 @@ trait Bookmarker
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @param \Illuminate\Database\Eloquent\Model $object
      */
-    public function bookmarkerBookmarks(): HasMany
+    public function toggleBookmark(Model $object): void
     {
-        return $this->hasMany(config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'), $this->getKeyName());
+        $this->bookmarks(get_class($object))->toggle($object->getKey());
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $object
+     */
+    public function unbookmark(Model $object): void
+    {
+        if ($this->hasNotBookmarked($object)) {
+            return;
+        }
+
+        $this->bookmarks(get_class($object))->detach($object->getKey());
     }
 
     /**

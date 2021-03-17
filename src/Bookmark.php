@@ -23,9 +23,38 @@ use LaravelInteraction\Bookmark\Events\Unbookmarked;
  */
 class Bookmark extends MorphPivot
 {
-    protected function uuids(): bool
+    protected $dispatchesEvents = [
+        'created' => Bookmarked::class,
+        'deleted' => Unbookmarked::class,
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function bookmarkable(): MorphTo
     {
-        return (bool) config('bookmark.uuids');
+        return $this->morphTo();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function bookmarker(): BelongsTo
+    {
+        return $this->user();
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::creating(
+            function (self $like): void {
+                if ($like->uuids()) {
+                    $like->{$like->getKeyName()} = Str::orderedUuid();
+                }
+            }
+        );
     }
 
     public function getIncrementing(): bool
@@ -43,51 +72,9 @@ class Bookmark extends MorphPivot
         return $this->uuids() ? 'string' : parent::getKeyType();
     }
 
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        static::creating(
-            function (self $like): void {
-                if ($like->uuids()) {
-                    $like->{$like->getKeyName()} = Str::orderedUuid();
-                }
-            }
-        );
-    }
-
-    protected $dispatchesEvents = [
-        'created' => Bookmarked::class,
-        'deleted' => Unbookmarked::class,
-    ];
-
     public function getTable()
     {
         return config('bookmark.table_names.bookmarks') ?: parent::getTable();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
-    public function bookmarkable(): MorphTo
-    {
-        return $this->morphTo();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(config('bookmark.models.user'), config('bookmark.column_names.user_foreign_key'));
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function bookmarker(): BelongsTo
-    {
-        return $this->user();
     }
 
     public function isBookmarkedBy(Model $user): bool
@@ -109,5 +96,18 @@ class Bookmark extends MorphPivot
     public function scopeWithType(Builder $query, string $type): Builder
     {
         return $query->where('bookmarkable_type', app($type)->getMorphClass());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(config('bookmark.models.user'), config('bookmark.column_names.user_foreign_key'));
+    }
+
+    protected function uuids(): bool
+    {
+        return (bool) config('bookmark.uuids');
     }
 }
