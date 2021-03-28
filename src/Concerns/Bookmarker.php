@@ -23,7 +23,8 @@ trait Bookmarker
             return;
         }
 
-        $this->bookmarks(get_class($object))->attach($object->getKey());
+        $this->bookmarks(get_class($object))
+            ->attach($object->getKey());
     }
 
     /**
@@ -31,7 +32,11 @@ trait Bookmarker
      */
     public function bookmarkerBookmarks(): HasMany
     {
-        return $this->hasMany(config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'), $this->getKeyName());
+        return $this->hasMany(
+            config('bookmark.models.bookmark'),
+            config('bookmark.column_names.user_foreign_key'),
+            $this->getKeyName()
+        );
     }
 
     /**
@@ -41,7 +46,9 @@ trait Bookmarker
      */
     public function hasBookmarked(Model $object): bool
     {
-        return ($this->relationLoaded('bookmarkerBookmarks') ? $this->bookmarkerBookmarks : $this->bookmarkerBookmarks())
+        return ($this->relationLoaded(
+            'bookmarkerBookmarks'
+        ) ? $this->bookmarkerBookmarks : $this->bookmarkerBookmarks())
             ->where('bookmarkable_id', $object->getKey())
             ->where('bookmarkable_type', $object->getMorphClass())
             ->count() > 0;
@@ -57,7 +64,8 @@ trait Bookmarker
      */
     public function toggleBookmark(Model $object): void
     {
-        $this->bookmarks(get_class($object))->toggle($object->getKey());
+        $this->bookmarks(get_class($object))
+            ->toggle($object->getKey());
     }
 
     /**
@@ -69,7 +77,8 @@ trait Bookmarker
             return;
         }
 
-        $this->bookmarks(get_class($object))->detach($object->getKey());
+        $this->bookmarks(get_class($object))
+            ->detach($object->getKey());
     }
 
     /**
@@ -79,6 +88,12 @@ trait Bookmarker
      */
     protected function bookmarks(string $class): MorphToMany
     {
-        return $this->morphedByMany($class, 'bookmarkable', config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'))->withTimestamps();
+        return $this->morphedByMany(
+            $class,
+            'bookmarkable',
+            config('bookmark.models.bookmark'),
+            config('bookmark.column_names.user_foreign_key')
+        )
+            ->withTimestamps();
     }
 }

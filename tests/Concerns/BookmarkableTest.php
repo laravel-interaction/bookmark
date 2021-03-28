@@ -12,10 +12,7 @@ class BookmarkableTest extends TestCase
 {
     public function modelClasses(): array
     {
-        return[
-            [Channel::class],
-            [User::class],
-        ];
+        return[[Channel::class], [User::class]];
     }
 
     /**
@@ -141,7 +138,10 @@ class BookmarkableTest extends TestCase
         $other = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame($modelClass::query()->whereKeyNot($model->getKey())->count(), $modelClass::query()->whereNotBookmarkedBy($user)->count());
+        self::assertSame(
+            $modelClass::query()->whereKeyNot($model->getKey())->count(),
+            $modelClass::query()->whereNotBookmarkedBy($user)->count()
+        );
         self::assertSame($modelClass::query()->count(), $modelClass::query()->whereNotBookmarkedBy($other)->count());
     }
 }
