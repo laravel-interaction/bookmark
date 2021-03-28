@@ -56,7 +56,12 @@ trait Bookmarkable
 
     public function bookmarkersCountForHumans($precision = 1, $mode = PHP_ROUND_HALF_UP, $divisors = null): string
     {
-        return Interaction::numberForHumans($this->bookmarkersCount(), $precision, $mode, $divisors ?? config('bookmark.divisors'));
+        return Interaction::numberForHumans(
+            $this->bookmarkersCount(),
+            $precision,
+            $mode,
+            $divisors ?? config('bookmark.divisors')
+        );
     }
 
     /**
@@ -74,8 +79,11 @@ trait Bookmarkable
             return $this->bookmarkers->contains($user);
         }
 
-        return ($this->relationLoaded('bookmarkableBookmarks') ? $this->bookmarkableBookmarks : $this->bookmarkableBookmarks())
-            ->where(config('bookmark.column_names.user_foreign_key'), $user->getKey())->count() > 0;
+        return ($this->relationLoaded(
+            'bookmarkableBookmarks'
+        ) ? $this->bookmarkableBookmarks : $this->bookmarkableBookmarks())
+            ->where(config('bookmark.column_names.user_foreign_key'), $user->getKey())
+            ->count() > 0;
     }
 
     public function isNotBookmarkedBy(Model $user): bool
