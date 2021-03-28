@@ -79,6 +79,6 @@ trait Bookmarker
      */
     protected function bookmarks(string $class): MorphToMany
     {
-        return $this->morphedByMany($class, 'bookmarkable', config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'), 'bookmarkable_id')->withTimestamps();
+        return $this->morphedByMany($class, 'bookmarkable', config('bookmark.models.bookmark'), config('bookmark.column_names.user_foreign_key'))->withTimestamps();
     }
 }
