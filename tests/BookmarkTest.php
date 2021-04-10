@@ -12,17 +12,17 @@ use LaravelInteraction\Bookmark\Tests\Models\User;
 class BookmarkTest extends TestCase
 {
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\LaravelInteraction\Bookmark\Tests\Models\User
+     * @var \LaravelInteraction\Bookmark\Tests\Models\User
      */
     protected $user;
 
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|\LaravelInteraction\Bookmark\Tests\Models\Channel
+     * @var \LaravelInteraction\Bookmark\Tests\Models\Channel
      */
     protected $channel;
 
     /**
-     * @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|\LaravelInteraction\Bookmark\Bookmark|null
+     * @var \LaravelInteraction\Bookmark\Bookmark
      */
     protected $bookmark;
 
@@ -33,7 +33,7 @@ class BookmarkTest extends TestCase
         $this->user = User::query()->create();
         $this->channel = Channel::query()->create();
         $this->user->bookmark($this->channel);
-        $this->bookmark = Bookmark::query()->first();
+        $this->bookmark = Bookmark::query()->firstOrFail();
     }
 
     public function testBookmarkTimestamp(): void
