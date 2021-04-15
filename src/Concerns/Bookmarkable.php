@@ -74,9 +74,9 @@ trait Bookmarkable
         if (! is_a($user, config('bookmark.models.user'))) {
             return false;
         }
-        $bookmarkersThisRelationLoaded = $this->relationLoaded('bookmarkers');
+        $bookmarkersLoaded = $this->relationLoaded('bookmarkers');
 
-        if ($bookmarkersThisRelationLoaded) {
+        if ($bookmarkersLoaded) {
             return $this->bookmarkers->contains($user);
         }
 

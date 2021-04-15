@@ -19,8 +19,8 @@ trait Bookmarker
      */
     public function bookmark(Model $object): void
     {
-        $thisHasBookmarked = $this->hasBookmarked($object);
-        if ($thisHasBookmarked) {
+        $hasBookmarked = $this->hasBookmarked($object);
+        if ($hasBookmarked) {
             return;
         }
 
@@ -74,8 +74,8 @@ trait Bookmarker
      */
     public function unbookmark(Model $object): void
     {
-        $thisHasNotBookmarked = $this->hasNotBookmarked($object);
-        if ($thisHasNotBookmarked) {
+        $hasNotBookmarked = $this->hasNotBookmarked($object);
+        if ($hasNotBookmarked) {
             return;
         }
 
