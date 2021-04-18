@@ -24,6 +24,10 @@ class BookmarkerTest extends TestCase
                 'bookmarkable_id' => $channel->getKey(),
             ]
         );
+        $user->load('bookmarkerBookmarks');
+        $user->unbookmark($channel);
+        $user->load('bookmarkerBookmarks');
+        $user->bookmark($channel);
     }
 
     public function testUnbookmark(): void
