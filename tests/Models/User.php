@@ -14,5 +14,6 @@ use LaravelInteraction\Bookmark\Concerns\Bookmarker;
 class User extends Model
 {
     use Bookmarker;
+
     use Bookmarkable;
 }
