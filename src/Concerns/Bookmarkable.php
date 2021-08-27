@@ -21,17 +21,11 @@ use function is_a;
  */
 trait Bookmarkable
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
     public function bookmarkableBookmarks(): MorphMany
     {
         return $this->morphMany(config('bookmark.models.bookmark'), 'bookmarkable');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
     public function bookmarkers(): BelongsToMany
     {
         return $this->morphToMany(
@@ -64,11 +58,6 @@ trait Bookmarkable
         );
     }
 
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $user
-     *
-     * @return bool
-     */
     public function isBookmarkedBy(Model $user): bool
     {
         if (! is_a($user, config('bookmark.models.user'))) {

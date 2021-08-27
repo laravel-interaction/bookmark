@@ -30,17 +30,11 @@ class Bookmark extends MorphPivot
         'deleted' => Unbookmarked::class,
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-     */
     public function bookmarkable(): MorphTo
     {
         return $this->morphTo();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function bookmarker(): BelongsTo
     {
         return $this->user();
@@ -93,20 +87,11 @@ class Bookmark extends MorphPivot
         return $object->is($this->bookmarkable);
     }
 
-    /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param string $type
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
     public function scopeWithType(Builder $query, string $type): Builder
     {
         return $query->where('bookmarkable_type', app($type)->getMorphClass());
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(config('bookmark.models.user'), config('bookmark.column_names.user_foreign_key'));

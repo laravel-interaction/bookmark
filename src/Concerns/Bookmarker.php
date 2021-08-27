@@ -15,11 +15,6 @@ use LaravelInteraction\Bookmark\Bookmark;
  */
 trait Bookmarker
 {
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $object
-     *
-     * @return \LaravelInteraction\Bookmark\Bookmark
-     */
     public function bookmark(Model $object): Bookmark
     {
         $attributes = [
@@ -40,9 +35,6 @@ trait Bookmarker
             });
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function bookmarkerBookmarks(): HasMany
     {
         return $this->hasMany(
@@ -52,11 +44,6 @@ trait Bookmarker
         );
     }
 
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $object
-     *
-     * @return bool
-     */
     public function hasBookmarked(Model $object): bool
     {
         return ($this->relationLoaded(
@@ -73,8 +60,6 @@ trait Bookmarker
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $object
-     *
      * @return bool|\LaravelInteraction\Bookmark\Bookmark
      */
     public function toggleBookmark(Model $object)
@@ -82,11 +67,6 @@ trait Bookmarker
         return $this->hasBookmarked($object) ? $this->unbookmark($object) : $this->bookmark($object);
     }
 
-    /**
-     * @param \Illuminate\Database\Eloquent\Model $object
-     *
-     * @return bool
-     */
     public function unbookmark(Model $object): bool
     {
         $hasNotBookmarked = $this->hasNotBookmarked($object);
@@ -102,11 +82,6 @@ trait Bookmarker
             ->detach($object->getKey());
     }
 
-    /**
-     * @param string $class
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
-     */
     protected function bookmarks(string $class): MorphToMany
     {
         return $this->morphedByMany(

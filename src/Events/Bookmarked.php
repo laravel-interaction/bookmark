@@ -13,11 +13,6 @@ class Bookmarked
      */
     public $bookmark;
 
-    /**
-     * Liked constructor.
-     *
-     * @param \Illuminate\Database\Eloquent\Model $bookmark
-     */
     public function __construct(Model $bookmark)
     {
         $this->bookmark = $bookmark;
