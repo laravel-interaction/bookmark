@@ -63,6 +63,7 @@ trait Bookmarkable
         if (! is_a($user, config('bookmark.models.user'))) {
             return false;
         }
+
         $bookmarkersLoaded = $this->relationLoaded('bookmarkers');
 
         if ($bookmarkersLoaded) {

@@ -73,6 +73,7 @@ trait Bookmarker
         if ($hasNotBookmarked) {
             return true;
         }
+
         $bookmarkerBookmarksLoaded = $this->relationLoaded('bookmarkerBookmarks');
         if ($bookmarkerBookmarksLoaded) {
             $this->unsetRelation('bookmarkerBookmarks');
