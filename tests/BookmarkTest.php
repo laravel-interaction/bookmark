@@ -9,22 +9,25 @@ use LaravelInteraction\Bookmark\Bookmark;
 use LaravelInteraction\Bookmark\Tests\Models\Channel;
 use LaravelInteraction\Bookmark\Tests\Models\User;
 
-class BookmarkTest extends TestCase
+/**
+ * @internal
+ */
+final class BookmarkTest extends TestCase
 {
     /**
      * @var \LaravelInteraction\Bookmark\Tests\Models\User
      */
-    protected $user;
+    private $user;
 
     /**
      * @var \LaravelInteraction\Bookmark\Tests\Models\Channel
      */
-    protected $channel;
+    private $channel;
 
     /**
      * @var \LaravelInteraction\Bookmark\Bookmark
      */
-    protected $bookmark;
+    private $bookmark;
 
     protected function setUp(): void
     {

@@ -9,7 +9,10 @@ use LaravelInteraction\Bookmark\Tests\Models\Channel;
 use LaravelInteraction\Bookmark\Tests\Models\User;
 use LaravelInteraction\Bookmark\Tests\TestCase;
 
-class BookmarkerTest extends TestCase
+/**
+ * @internal
+ */
+final class BookmarkerTest extends TestCase
 {
     public function testBookmark(): void
     {

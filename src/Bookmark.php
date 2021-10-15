@@ -25,6 +25,9 @@ use LaravelInteraction\Bookmark\Events\Unbookmarked;
  */
 class Bookmark extends MorphPivot
 {
+    /**
+     * @var array<string, class-string<\LaravelInteraction\Bookmark\Events\Bookmarked>>|array<string, class-string<\LaravelInteraction\Bookmark\Events\Unbookmarked>>
+     */
     protected $dispatchesEvents = [
         'created' => Bookmarked::class,
         'deleted' => Unbookmarked::class,
@@ -53,6 +56,9 @@ class Bookmark extends MorphPivot
         );
     }
 
+    /**
+     * @var bool
+     */
     public $incrementing = true;
 
     public function getIncrementing(): bool

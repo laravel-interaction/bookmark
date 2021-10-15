@@ -10,7 +10,10 @@ use LaravelInteraction\Bookmark\Tests\Models\Channel;
 use LaravelInteraction\Bookmark\Tests\Models\User;
 use LaravelInteraction\Bookmark\Tests\TestCase;
 
-class BookmarkedTest extends TestCase
+/**
+ * @internal
+ */
+final class BookmarkedTest extends TestCase
 {
     public function testOnce(): void
     {

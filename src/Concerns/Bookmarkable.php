@@ -48,8 +48,11 @@ trait Bookmarkable
         return (int) $this->bookmarkers_count;
     }
 
-    public function bookmarkersCountForHumans($precision = 1, $mode = PHP_ROUND_HALF_UP, $divisors = null): string
-    {
+    public function bookmarkersCountForHumans(
+        int $precision = 1,
+        int $mode = PHP_ROUND_HALF_UP,
+        $divisors = null
+    ): string {
         return Interaction::numberForHumans(
             $this->bookmarkersCount(),
             $precision,
@@ -86,7 +89,7 @@ trait Bookmarkable
     {
         return $query->whereHas(
             'bookmarkers',
-            function (Builder $query) use ($user) {
+            function (Builder $query) use ($user): \Illuminate\Database\Eloquent\Builder {
                 return $query->whereKey($user->getKey());
             }
         );
@@ -96,7 +99,7 @@ trait Bookmarkable
     {
         return $query->whereDoesntHave(
             'bookmarkers',
-            function (Builder $query) use ($user) {
+            function (Builder $query) use ($user): \Illuminate\Database\Eloquent\Builder {
                 return $query->whereKey($user->getKey());
             }
         );
