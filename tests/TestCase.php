@@ -44,6 +44,11 @@ abstract class TestCase extends BaseTestCase
         );
     }
 
+    /**
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return array<class-string<\Illuminate\Support\ServiceProvider>>
+     */
     protected function getPackageProviders($app): array
     {
         return [BookmarkServiceProvider::class];
