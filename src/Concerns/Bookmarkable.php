@@ -89,7 +89,7 @@ trait Bookmarkable
     {
         return $query->whereHas(
             'bookmarkers',
-            function (Builder $query) use ($user): \Illuminate\Database\Eloquent\Builder {
+            function (Builder $query) use ($user): Builder {
                 return $query->whereKey($user->getKey());
             }
         );
@@ -99,7 +99,7 @@ trait Bookmarkable
     {
         return $query->whereDoesntHave(
             'bookmarkers',
-            function (Builder $query) use ($user): \Illuminate\Database\Eloquent\Builder {
+            function (Builder $query) use ($user): Builder {
                 return $query->whereKey($user->getKey());
             }
         );
