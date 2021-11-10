@@ -48,6 +48,9 @@ trait Bookmarkable
         return (int) $this->bookmarkers_count;
     }
 
+    /**
+     * @param array<int, string>|null $divisors
+     */
     public function bookmarkersCountForHumans(
         int $precision = 1,
         int $mode = PHP_ROUND_HALF_UP,
