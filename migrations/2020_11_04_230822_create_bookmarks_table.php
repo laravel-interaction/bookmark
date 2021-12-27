@@ -17,10 +17,14 @@ class CreateBookmarksTable extends Migration
             config('bookmark.table_names.bookmarks'),
             function (Blueprint $table): void {
                 config('bookmark.uuids') ? $table->uuid('uuid') : $table->bigIncrements('id');
-                $table->unsignedBigInteger(config('bookmark.column_names.user_foreign_key'))->index()->comment('user_id');
+                $table->unsignedBigInteger(config('bookmark.column_names.user_foreign_key'))
+                    ->index()
+                    ->comment('user_id');
                 $table->morphs('bookmarkable');
                 $table->timestamps();
-                $table->unique([config('bookmark.column_names.user_foreign_key'), 'bookmarkable_type', 'bookmarkable_id']);
+                $table->unique(
+                    [config('bookmark.column_names.user_foreign_key'), 'bookmarkable_type', 'bookmarkable_id']
+                );
             }
         );
     }
