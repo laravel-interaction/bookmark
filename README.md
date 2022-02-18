@@ -9,7 +9,7 @@ User bookmark/unbookmark behaviour for Laravel.
 <a href="https://packagist.org/packages/laravel-interaction/bookmark"><img src="https://poser.pugx.org/laravel-interaction/bookmark/license" alt="License"></a>
 </p>
 
-> **Requires [PHP 7.2.0+](https://php.net/releases/)**
+> **Requires [PHP 7.3+](https://php.net/releases/)**
 
 Require Laravel Bookmark using [Composer](https://getcomposer.org):
 
