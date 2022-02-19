@@ -80,7 +80,7 @@ class Bookmark extends MorphPivot
         return $this->uuids() ? 'string' : parent::getKeyType();
     }
 
-    public function getTable()
+    public function getTable(): string
     {
         return config('bookmark.table_names.bookmarks') ?: parent::getTable();
     }
