@@ -3,6 +3,11 @@
     "description": "User bookmark/unbookmark behaviour for Laravel.",
     "keywords": ["laravel", "bookmarks", "bookmark"],
     "license": "MIT",
+    "homepage": "https://github.com/laravel-interaction/bookmark",
+    "support": {
+        "issues": "https://github.com/laravel-interaction/bookmark/issues",
+        "source": "https://github.com/laravel-interaction/bookmark"
+    },
     "authors": [
         {
             "name": "zingimmick",
