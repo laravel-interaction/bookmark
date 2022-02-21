@@ -79,7 +79,7 @@ trait Bookmarker
             $this->unsetRelation('bookmarkerBookmarks');
         }
 
-        return (bool) $this->bookmarks(get_class($object))
+        return (bool) $this->bookmarks(\get_class($object))
             ->detach($object->getKey());
     }
 
