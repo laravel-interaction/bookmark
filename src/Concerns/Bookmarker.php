@@ -37,11 +37,7 @@ trait Bookmarker
 
     public function bookmarkerBookmarks(): HasMany
     {
-        return $this->hasMany(
-            config('bookmark.models.bookmark'),
-            config('bookmark.column_names.user_foreign_key'),
-            $this->getKeyName()
-        );
+        return $this->hasMany(config('bookmark.models.pivot'), config('bookmark.column_names.user_foreign_key'));
     }
 
     public function hasBookmarked(Model $object): bool
@@ -88,7 +84,7 @@ trait Bookmarker
         return $this->morphedByMany(
             $class,
             'bookmarkable',
-            config('bookmark.models.bookmark'),
+            config('bookmark.models.pivot'),
             config('bookmark.column_names.user_foreign_key')
         )
             ->withTimestamps();

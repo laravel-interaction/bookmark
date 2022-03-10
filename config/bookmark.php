@@ -9,10 +9,10 @@ return [
     'uuids' => false,
     'models' => [
         'user' => \App\User::class,
-        'bookmark' => Bookmark::class,
+        'pivot' => Bookmark::class,
     ],
     'table_names' => [
-        'bookmarks' => 'bookmarks',
+        'pivot' => 'bookmarks',
     ],
     'column_names' => [
         'user_foreign_key' => 'user_id',

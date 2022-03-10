@@ -23,7 +23,7 @@ trait Bookmarkable
 {
     public function bookmarkableBookmarks(): MorphMany
     {
-        return $this->morphMany(config('bookmark.models.bookmark'), 'bookmarkable');
+        return $this->morphMany(config('bookmark.models.pivot'), 'bookmarkable');
     }
 
     public function bookmarkers(): BelongsToMany
@@ -31,7 +31,7 @@ trait Bookmarkable
         return $this->morphToMany(
             config('bookmark.models.user'),
             'bookmarkable',
-            config('bookmark.models.bookmark'),
+            config('bookmark.models.pivot'),
             null,
             config('bookmark.column_names.user_foreign_key')
         )->withTimestamps();

@@ -14,7 +14,7 @@ class CreateBookmarksTable extends Migration
     public function up(): void
     {
         Schema::create(
-            config('bookmark.table_names.bookmarks'),
+            config('bookmark.table_names.pivot'),
             function (Blueprint $table): void {
                 config('bookmark.uuids') ? $table->uuid('uuid') : $table->bigIncrements('id');
                 $table->unsignedBigInteger(config('bookmark.column_names.user_foreign_key'))

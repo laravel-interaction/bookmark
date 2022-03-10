@@ -82,7 +82,7 @@ class Bookmark extends MorphPivot
 
     public function getTable(): string
     {
-        return config('bookmark.table_names.bookmarks') ?: parent::getTable();
+        return config('bookmark.table_names.pivot') ?: parent::getTable();
     }
 
     public function isBookmarkedBy(Model $user): bool
