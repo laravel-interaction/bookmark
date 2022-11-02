@@ -55,10 +55,7 @@ trait Bookmarker
         return ! $this->hasBookmarked($object);
     }
 
-    /**
-     * @return bool|\LaravelInteraction\Bookmark\Bookmark
-     */
-    public function toggleBookmark(Model $object)
+    public function toggleBookmark(Model $object): bool|Bookmark
     {
         return $this->hasBookmarked($object) ? $this->unbookmark($object) : $this->bookmark($object);
     }
@@ -75,7 +72,7 @@ trait Bookmarker
             $this->unsetRelation('bookmarkerBookmarks');
         }
 
-        return (bool) $this->bookmarks(\get_class($object))
+        return (bool) $this->bookmarks($object::class)
             ->detach($object->getKey());
     }
 

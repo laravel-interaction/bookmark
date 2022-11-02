@@ -8,13 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Unbookmarked
 {
-    /**
-     * @var \Illuminate\Database\Eloquent\Model
-     */
-    public $bookmark;
-
-    public function __construct(Model $bookmark)
+    public function __construct(public Model $model)
     {
-        $this->bookmark = $bookmark;
     }
 }

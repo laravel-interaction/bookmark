@@ -95,9 +95,7 @@ trait Bookmarkable
     {
         return $query->whereHas(
             'bookmarkers',
-            static function (Builder $query) use ($user): Builder {
-                return $query->whereKey($user->getKey());
-            }
+            static fn (Builder $query): Builder => $query->whereKey($user->getKey())
         );
     }
 
@@ -105,9 +103,7 @@ trait Bookmarkable
     {
         return $query->whereDoesntHave(
             'bookmarkers',
-            static function (Builder $query) use ($user): Builder {
-                return $query->whereKey($user->getKey());
-            }
+            static fn (Builder $query): Builder => $query->whereKey($user->getKey())
         );
     }
 }
