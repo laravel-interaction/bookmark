@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace LaravelInteraction\Bookmark\Tests\Concerns;
 
-use Iterator;
 use LaravelInteraction\Bookmark\Tests\Models\Channel;
 use LaravelInteraction\Bookmark\Tests\Models\User;
 use LaravelInteraction\Bookmark\Tests\TestCase;
@@ -17,7 +16,7 @@ final class BookmarkableTest extends TestCase
     /**
      * @return \Iterator<array<class-string<\LaravelInteraction\Bookmark\Tests\Models\Channel|\LaravelInteraction\Bookmark\Tests\Models\User>>>
      */
-    public function provideModelClasses(): Iterator
+    public function provideModelClasses(): \Iterator
     {
         yield [Channel::class];
 
