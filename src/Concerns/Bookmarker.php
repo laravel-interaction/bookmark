@@ -55,7 +55,7 @@ trait Bookmarker
         return ! $this->hasBookmarked($object);
     }
 
-    public function toggleBookmark(Model $object): bool|Bookmark
+    public function toggleBookmark(Model $object): Bookmark|bool
     {
         return $this->hasBookmarked($object) ? $this->unbookmark($object) : $this->bookmark($object);
     }
