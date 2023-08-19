@@ -26,19 +26,19 @@ final class UuidsTest extends TestCase
     public function testKeyType(): void
     {
         $bookmark = new Bookmark();
-        self::assertSame('string', $bookmark->getKeyType());
+        $this->assertSame('string', $bookmark->getKeyType());
     }
 
     public function testIncrementing(): void
     {
         $bookmark = new Bookmark();
-        self::assertFalse($bookmark->getIncrementing());
+        $this->assertFalse($bookmark->getIncrementing());
     }
 
     public function testKeyName(): void
     {
         $bookmark = new Bookmark();
-        self::assertSame('uuid', $bookmark->getKeyName());
+        $this->assertSame('uuid', $bookmark->getKeyName());
     }
 
     public function testKey(): void
@@ -46,6 +46,6 @@ final class UuidsTest extends TestCase
         $user = User::query()->create();
         $channel = Channel::query()->create();
         $user->bookmark($channel);
-        self::assertIsString($user->bookmarkerBookmarks()->firstOrFail()->getKey());
+        $this->assertIsString($user->bookmarkerBookmarks()->firstOrFail()->getKey());
     }
 }

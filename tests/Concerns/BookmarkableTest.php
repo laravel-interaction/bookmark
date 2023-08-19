@@ -33,8 +33,8 @@ final class BookmarkableTest extends TestCase
         $user = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame(1, $model->bookmarkableBookmarks()->count());
-        self::assertSame(1, $model->bookmarkableBookmarks->count());
+        $this->assertSame(1, $model->bookmarkableBookmarks()->count());
+        $this->assertSame(1, $model->bookmarkableBookmarks->count());
     }
 
     /**
@@ -47,11 +47,11 @@ final class BookmarkableTest extends TestCase
         $user = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame(1, $model->bookmarkersCount());
+        $this->assertSame(1, $model->bookmarkersCount());
         $user->unbookmark($model);
-        self::assertSame(1, $model->bookmarkersCount());
+        $this->assertSame(1, $model->bookmarkersCount());
         $model->loadCount('bookmarkers');
-        self::assertSame(0, $model->bookmarkersCount());
+        $this->assertSame(0, $model->bookmarkersCount());
     }
 
     /**
@@ -64,7 +64,7 @@ final class BookmarkableTest extends TestCase
         $user = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame('1', $model->bookmarkersCountForHumans());
+        $this->assertSame('1', $model->bookmarkersCountForHumans());
     }
 
     /**
@@ -76,14 +76,14 @@ final class BookmarkableTest extends TestCase
     {
         $user = User::query()->create();
         $model = $modelClass::query()->create();
-        self::assertFalse($model->isBookmarkedBy($model));
+        $this->assertFalse($model->isBookmarkedBy($model));
         $user->bookmark($model);
-        self::assertTrue($model->isBookmarkedBy($user));
+        $this->assertTrue($model->isBookmarkedBy($user));
         $model->load('bookmarkers');
         $user->unbookmark($model);
-        self::assertTrue($model->isBookmarkedBy($user));
+        $this->assertTrue($model->isBookmarkedBy($user));
         $model->load('bookmarkers');
-        self::assertFalse($model->isBookmarkedBy($user));
+        $this->assertFalse($model->isBookmarkedBy($user));
     }
 
     /**
@@ -95,14 +95,14 @@ final class BookmarkableTest extends TestCase
     {
         $user = User::query()->create();
         $model = $modelClass::query()->create();
-        self::assertTrue($model->isNotBookmarkedBy($model));
+        $this->assertTrue($model->isNotBookmarkedBy($model));
         $user->bookmark($model);
-        self::assertFalse($model->isNotBookmarkedBy($user));
+        $this->assertFalse($model->isNotBookmarkedBy($user));
         $model->load('bookmarkers');
         $user->unbookmark($model);
-        self::assertFalse($model->isNotBookmarkedBy($user));
+        $this->assertFalse($model->isNotBookmarkedBy($user));
         $model->load('bookmarkers');
-        self::assertTrue($model->isNotBookmarkedBy($user));
+        $this->assertTrue($model->isNotBookmarkedBy($user));
     }
 
     /**
@@ -115,9 +115,9 @@ final class BookmarkableTest extends TestCase
         $user = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame(1, $model->bookmarkers()->count());
+        $this->assertSame(1, $model->bookmarkers()->count());
         $user->unbookmark($model);
-        self::assertSame(0, $model->bookmarkers()->count());
+        $this->assertSame(0, $model->bookmarkers()->count());
     }
 
     /**
@@ -131,8 +131,8 @@ final class BookmarkableTest extends TestCase
         $other = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame(1, $modelClass::query()->whereBookmarkedBy($user)->count());
-        self::assertSame(0, $modelClass::query()->whereBookmarkedBy($other)->count());
+        $this->assertSame(1, $modelClass::query()->whereBookmarkedBy($user)->count());
+        $this->assertSame(0, $modelClass::query()->whereBookmarkedBy($other)->count());
     }
 
     /**
@@ -146,10 +146,10 @@ final class BookmarkableTest extends TestCase
         $other = User::query()->create();
         $model = $modelClass::query()->create();
         $user->bookmark($model);
-        self::assertSame(
+        $this->assertSame(
             $modelClass::query()->whereKeyNot($model->getKey())->count(),
             $modelClass::query()->whereNotBookmarkedBy($user)->count()
         );
-        self::assertSame($modelClass::query()->count(), $modelClass::query()->whereNotBookmarkedBy($other)->count());
+        $this->assertSame($modelClass::query()->count(), $modelClass::query()->whereNotBookmarkedBy($other)->count());
     }
 }

@@ -86,8 +86,8 @@ final class BookmarkerTest extends TestCase
         $user = User::query()->create();
         $channel = Channel::query()->create();
         $user->toggleBookmark($channel);
-        self::assertSame(1, $user->bookmarkerBookmarks()->count());
-        self::assertSame(1, $user->bookmarkerBookmarks->count());
+        $this->assertSame(1, $user->bookmarkerBookmarks()->count());
+        $this->assertSame(1, $user->bookmarkerBookmarks->count());
     }
 
     public function testHasBookmarked(): void
@@ -95,10 +95,10 @@ final class BookmarkerTest extends TestCase
         $user = User::query()->create();
         $channel = Channel::query()->create();
         $user->toggleBookmark($channel);
-        self::assertTrue($user->hasBookmarked($channel));
+        $this->assertTrue($user->hasBookmarked($channel));
         $user->toggleBookmark($channel);
         $user->load('bookmarkerBookmarks');
-        self::assertFalse($user->hasBookmarked($channel));
+        $this->assertFalse($user->hasBookmarked($channel));
     }
 
     public function testHasNotBookmarked(): void
@@ -106,8 +106,8 @@ final class BookmarkerTest extends TestCase
         $user = User::query()->create();
         $channel = Channel::query()->create();
         $user->toggleBookmark($channel);
-        self::assertFalse($user->hasNotBookmarked($channel));
+        $this->assertFalse($user->hasNotBookmarked($channel));
         $user->toggleBookmark($channel);
-        self::assertTrue($user->hasNotBookmarked($channel));
+        $this->assertTrue($user->hasNotBookmarked($channel));
     }
 }

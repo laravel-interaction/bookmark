@@ -32,45 +32,45 @@ final class BookmarkTest extends TestCase
 
     public function testBookmarkTimestamp(): void
     {
-        self::assertInstanceOf(Carbon::class, $this->bookmark->created_at);
-        self::assertInstanceOf(Carbon::class, $this->bookmark->updated_at);
+        $this->assertInstanceOf(Carbon::class, $this->bookmark->created_at);
+        $this->assertInstanceOf(Carbon::class, $this->bookmark->updated_at);
     }
 
     public function testScopeWithType(): void
     {
-        self::assertSame(1, Bookmark::query()->withType(Channel::class)->count());
-        self::assertSame(0, Bookmark::query()->withType(User::class)->count());
+        $this->assertSame(1, Bookmark::query()->withType(Channel::class)->count());
+        $this->assertSame(0, Bookmark::query()->withType(User::class)->count());
     }
 
     public function testGetTable(): void
     {
-        self::assertSame(config('bookmark.table_names.pivot'), $this->bookmark->getTable());
+        $this->assertSame(config('bookmark.table_names.pivot'), $this->bookmark->getTable());
     }
 
     public function testBookmarker(): void
     {
-        self::assertInstanceOf(User::class, $this->bookmark->bookmarker);
+        $this->assertInstanceOf(User::class, $this->bookmark->bookmarker);
     }
 
     public function testBookmarkable(): void
     {
-        self::assertInstanceOf(Channel::class, $this->bookmark->bookmarkable);
+        $this->assertInstanceOf(Channel::class, $this->bookmark->bookmarkable);
     }
 
     public function testUser(): void
     {
-        self::assertInstanceOf(User::class, $this->bookmark->user);
+        $this->assertInstanceOf(User::class, $this->bookmark->user);
     }
 
     public function testIsBookmarkedTo(): void
     {
-        self::assertTrue($this->bookmark->isBookmarkedTo($this->channel));
-        self::assertFalse($this->bookmark->isBookmarkedTo($this->user));
+        $this->assertTrue($this->bookmark->isBookmarkedTo($this->channel));
+        $this->assertFalse($this->bookmark->isBookmarkedTo($this->user));
     }
 
     public function testIsBookmarkedBy(): void
     {
-        self::assertFalse($this->bookmark->isBookmarkedBy($this->channel));
-        self::assertTrue($this->bookmark->isBookmarkedBy($this->user));
+        $this->assertFalse($this->bookmark->isBookmarkedBy($this->channel));
+        $this->assertTrue($this->bookmark->isBookmarkedBy($this->user));
     }
 }
