@@ -14,11 +14,11 @@ use LaravelInteraction\Bookmark\Tests\Models\User;
  */
 final class BookmarkTest extends TestCase
 {
-    private \LaravelInteraction\Bookmark\Tests\Models\User $user;
+    private User $user;
 
-    private \LaravelInteraction\Bookmark\Tests\Models\Channel $channel;
+    private Channel $channel;
 
-    private \LaravelInteraction\Bookmark\Bookmark $bookmark;
+    private Bookmark $bookmark;
 
     protected function setUp(): void
     {
