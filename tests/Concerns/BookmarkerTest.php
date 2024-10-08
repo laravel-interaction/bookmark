@@ -87,7 +87,7 @@ final class BookmarkerTest extends TestCase
         $channel = Channel::query()->create();
         $user->toggleBookmark($channel);
         $this->assertSame(1, $user->bookmarkerBookmarks()->count());
-        $this->assertSame(1, $user->bookmarkerBookmarks->count());
+        $this->assertCount(1, $user->bookmarkerBookmarks);
     }
 
     public function testHasBookmarked(): void

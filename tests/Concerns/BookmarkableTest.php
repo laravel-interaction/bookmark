@@ -34,7 +34,7 @@ final class BookmarkableTest extends TestCase
         $model = $modelClass::query()->create();
         $user->bookmark($model);
         $this->assertSame(1, $model->bookmarkableBookmarks()->count());
-        $this->assertSame(1, $model->bookmarkableBookmarks->count());
+        $this->assertCount(1, $model->bookmarkableBookmarks);
     }
 
     /**
