@@ -7,6 +7,7 @@ namespace LaravelInteraction\Bookmark\Tests\Concerns;
 use LaravelInteraction\Bookmark\Tests\Models\Channel;
 use LaravelInteraction\Bookmark\Tests\Models\User;
 use LaravelInteraction\Bookmark\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 /**
  * @internal
@@ -14,20 +15,11 @@ use LaravelInteraction\Bookmark\Tests\TestCase;
 final class BookmarkableTest extends TestCase
 {
     /**
-     * @return \Iterator<array<class-string<\LaravelInteraction\Bookmark\Tests\Models\Channel|\LaravelInteraction\Bookmark\Tests\Models\User>>>
-     */
-    public static function provideModelClasses(): \Iterator
-    {
-        yield [Channel::class];
-
-        yield [User::class];
-    }
-
-    /**
      * @dataProvider provideModelClasses
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testBookmarkableBookmarks(string $modelClass): void
     {
         $user = User::query()->create();
@@ -42,6 +34,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testBookmarkersCount(string $modelClass): void
     {
         $user = User::query()->create();
@@ -59,6 +52,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testBookmarkersCountForHumans(string $modelClass): void
     {
         $user = User::query()->create();
@@ -72,6 +66,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testIsBookmarkedBy(string $modelClass): void
     {
         $user = User::query()->create();
@@ -91,6 +86,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testIsNotBookmarkedBy(string $modelClass): void
     {
         $user = User::query()->create();
@@ -110,6 +106,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testBookmarkers(string $modelClass): void
     {
         $user = User::query()->create();
@@ -125,6 +122,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testScopeWhereBookmarkedBy(string $modelClass): void
     {
         $user = User::query()->create();
@@ -140,6 +138,7 @@ final class BookmarkableTest extends TestCase
      *
      * @param class-string<\LaravelInteraction\Bookmark\Tests\Models\User|\LaravelInteraction\Bookmark\Tests\Models\Channel> $modelClass
      */
+    #[DataProvider('provideModelClasses')]
     public function testScopeWhereNotBookmarkedBy(string $modelClass): void
     {
         $user = User::query()->create();
@@ -151,5 +150,15 @@ final class BookmarkableTest extends TestCase
             $modelClass::query()->whereNotBookmarkedBy($user)->count()
         );
         $this->assertSame($modelClass::query()->count(), $modelClass::query()->whereNotBookmarkedBy($other)->count());
+    }
+
+    /**
+     * @return \Iterator<array<class-string<\LaravelInteraction\Bookmark\Tests\Models\Channel|\LaravelInteraction\Bookmark\Tests\Models\User>>>
+     */
+    public static function provideModelClasses(): \Iterator
+    {
+        yield [Channel::class];
+
+        yield [User::class];
     }
 }
