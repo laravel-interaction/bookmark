@@ -48,9 +48,9 @@ trait Bookmarkable
     }
 
     /**
-     * @phpstan-param 1|2|3|4 $mode
-     *
      * @param array<int, string>|null $divisors
+     *
+     * @phpstan-param 1|2|3|4 $mode
      */
     public function bookmarkersCountForHumans(
         int $precision = 1,
